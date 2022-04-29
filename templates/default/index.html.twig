@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Découvrez les derniers articles{% endblock %}
+
+{% block body %}
+    <h1>Les derniers articles {% if brouillon %} (brouillons){% endif %}</h1>
+
+     {{ articles|taille }}
+
+    <div class="row mt-2 mb-2">
+    {% for article in articles %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body text-truncate">
+                    <h5 class="card-title">{{ article.titre }}</h5>
+                    <p class="card-text ">{{ article.contenu }}</p>
+                    <p class="card-text"><small class="text-muted">{{ article.dateCreation|date('d/m/Y') }}</small></p>
+                    <a href="{{ path('vue_article', { 'id':article.id }) }}" class="btn btn-sm btn-primary">Lire la suite</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+
+{% endblock %}
